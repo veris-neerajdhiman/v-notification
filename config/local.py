@@ -103,10 +103,25 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_FILTER_BACKENDS': (
-        'django_filters.rest_framework.DjangoFilterBackend',
         'rest_framework.filters.OrderingFilter',
         'rest_framework.filters.SearchFilter'
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 50
 }
+
+
+
+
+#` ----------------- Gmail --------------------
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = get_env_setting('EMAIL_HOST_USER')  # my gmail username
+EMAIL_HOST_PASSWORD = get_env_setting('EMAIL_HOST_PASSWORD')  # my gmail password
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# ----------------------- Plivo -------------------
+PLIVO_AUTH_ID = get_env_setting('PLIVO_AUTH_ID')
+PLIVO_AUTH_TOKEN = get_env_setting('PLIVO_AUTH_TOKEN')

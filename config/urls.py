@@ -25,8 +25,10 @@ from django.contrib import admin
 from rest_framework.documentation import include_docs_urls
 from rest_framework_swagger.views import get_swagger_view
 
+from notification import router as notification_router
 
-API_TITLE = '{project_name} API'
+
+API_TITLE = 'V-Notification API'
 
 urlpatterns = [
     url(r'^swagger/$', get_swagger_view(title=API_TITLE)),
@@ -34,6 +36,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^docs/', include_docs_urls(title=API_TITLE, description='')),
+
+    url(r'^micro-service/notification/', include(notification_router)),
 
 ]
 
