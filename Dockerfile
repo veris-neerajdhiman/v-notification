@@ -1,7 +1,11 @@
 FROM django
-ADD . /v-notify
 
 WORKDIR /v-notify
 
-#RUN apt-get update && apt-get install -y git
+ADD ./requirements/base.txt /v-notify/requirements/base.txt
+
+
+RUN apt-get update && apt-get install -y git
 RUN pip install -r ./requirements/base.txt
+
+ADD . /v-notify

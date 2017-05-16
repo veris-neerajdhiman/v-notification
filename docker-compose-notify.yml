@@ -3,7 +3,7 @@ services:
   notify_db:
     image: postgres:9.6
     ports:
-     - "5432:5432"
+     - "9004:5432"
     env_file:
      - ../locale/env/notify_service
     volumes:
@@ -21,5 +21,4 @@ services:
      - .:/v-notify
     ports:
      - "8011:8011"
-#    depends_on:
-#      - notify_db
+
