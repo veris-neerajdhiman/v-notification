@@ -3,7 +3,7 @@
 
 """
 - notification.views
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
 
 - This file contains notification service actions like sed sms, email, push notifications.
 """
@@ -24,13 +24,21 @@ from libs import notifyAll as notification
 from notification import serializers
 
 
-class NotificationViewSet(viewsets.GenericViewSet):
+class NotificationViewSet(viewsets.ModelViewSet):
     """Notification Viewset, every notification http request handles by this class
 
     """
     # TODO : remove AllowAny permission with proper permission class
     permission_classes = (permissions.AllowAny, )
-    serializer_class = serializers.NoneSerializer
+
+    def get_serializer_class(self):
+        if self.action == 'send_email':
+            return serializers.EmailNotificationSerializer
+        elif self.action == 'send_sms':
+            return serializers.SMSNotificationSerializer
+        elif self.action == 'send_push':
+            return serializers.NoneSerializer
+        return serializers.NoneSerializer
 
     def _validate(self, serializer, data):
         """
@@ -60,7 +68,8 @@ class NotificationViewSet(viewsets.GenericViewSet):
             "html_message":"true"
         }
         """
-        data = self._validate(serializers.EmailNotificationSerializer, request.data)
+        serializer = self.get_serializer_class()
+        data = self._validate(serializer, request.data)
 
         self.notify(data)
         return Response(status=status.HTTP_200_OK)
@@ -79,7 +88,8 @@ class NotificationViewSet(viewsets.GenericViewSet):
             "body": "micro service message"
         }
         """
-        data = self._validate(serializers.SMSNotificationSerializer, request.data)
+        serializer = self.get_serializer_class()
+        data = self._validate(serializer, request.data)
 
         self.notify(data)
         return Response(status=status.HTTP_200_OK)
