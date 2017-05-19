@@ -1,0 +1,24 @@
+version: "2"
+services:
+  notify_db:
+    image: postgres:9.6
+    ports:
+     - "9004:5432"
+    env_file:
+     - ../locale/env/notify_service
+    volumes:
+      - /home/veris/micro-services/notify/data/postgres:/var/lib/postgresql/data
+  v_notify:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    env_file:
+     - ../locale/env/notify_service
+    environment:
+     DEBUG: 'true'
+    command: bash -c "python ./manage.py migrate && python ./manage.py runserver 0.0.0.0:8011"
+    volumes:
+     - .:/v-notify
+    ports:
+     - "8011:8011"
+
