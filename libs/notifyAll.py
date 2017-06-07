@@ -71,7 +71,7 @@ class NotifyAllLib(object):
         :return:
         """
         return {
-            'source': kwargs.get('from_'),
+            'source': kwargs.get('from_', 'plivo'),
             'destination': kwargs.get('to'),
             'notification_type': notification_settings.SMS,
             'provider': kwargs.get('provider'),

@@ -27,3 +27,4 @@ six==1.10.0
 sqlparse==0.2.3
 twilio==5.7.0
 uritemplate==3.0.0
+gunicorn==19.7.1

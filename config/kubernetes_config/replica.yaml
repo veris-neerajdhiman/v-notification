@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: notify-service
+  labels:
+    name: notify-service
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: notify-service
+    spec:
+      containers:
+      - name: notify-service
+        image: inforian/notify-service:
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: secrets
+          mountPath: /etc/secrets
+          readOnly: true
+      volumes:
+      - name: secrets
+        secret:
+
