@@ -25,6 +25,7 @@ class NoneSerializer(serializers.Serializer):
     """
     pass
 
+
 class EmailNotificationSerializer(serializers.Serializer):
     """Email Notification Serializer
 
@@ -56,3 +57,34 @@ class SMSNotificationSerializer(serializers.Serializer):
     body = serializers.CharField(required=True)
     provider = serializers.ChoiceField(required=True, choices=config.SMS_NOTIFICATION_PROVIDER)
     notification_type = serializers.CharField(default=config.SMS)
+
+
+class GmailSerilaizer(EmailNotificationSerializer):
+    """Gamil Serializer
+
+    """
+    username = serializers.CharField(required=True, help_text="Gmail Account Username")
+    password = serializers.CharField(required=True, help_text="Gmail Account Password")
+
+
+class SendGridSerilaizer(EmailNotificationSerializer):
+    """Sendgrid Serializer
+
+    """
+    sendgrid_api_key = serializers.CharField(required=True, help_text="SendGrid API key.")
+
+
+class PlivoSerilaizer(SMSNotificationSerializer):
+    """Plivo Serializer
+
+    """
+    auth_id = serializers.CharField(required=True, help_text="Plivo Auth ID.")
+    auth_token = serializers.CharField(required=True, help_text="Plivo Auth Token.")
+
+
+class TwilioSerilaizer(SMSNotificationSerializer):
+    """Twilio Serializer
+
+    """
+    account_sid = serializers.CharField(required=True, help_text="Twilio Account SID.")
+    auth_token = serializers.CharField(required=True, help_text="Twilio Auth Token.")

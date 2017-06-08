@@ -15,29 +15,43 @@ from __future__ import unicode_literals
 from django.conf.urls import url
 
 # own app
-from notification import views
+from notification import email, sms
 
 
-email_notification = views.NotificationViewSet.as_view({
-    'post': 'send_email',
+gmail_notification = email.GmailViewSet.as_view({
+    'post': 'gmail',
 })
 
-sms_notification = views.NotificationViewSet.as_view({
+sendgrid_notification = email.SendGridViewSet.as_view({
+    'post': 'sendgrid',
+})
+
+plivo_notification = sms.PlivoViewSet.as_view({
     'post': 'send_sms',
 })
 
-push_notification = views.NotificationViewSet.as_view({
-    'post': 'send_push',
+twilio_notification = sms.TwilioViewSet.as_view({
+    'post': 'send_sms',
 })
 
+# push_notification = views.NotificationViewSet.as_view({
+#     'post': 'send_push',
+# })
+
 urlpatterns = [
-        url(r'^email/$',
-            email_notification,
-            name='email-notification'),
-        url(r'^sms/$',
-            sms_notification,
-            name='sms-notification'),
-        url(r'^push/$',
-            push_notification,
-            name='push-notification'),
+        url(r'^email/gmail/$',
+            gmail_notification,
+            name='gmail-notification'),
+        url(r'^email/sendgrid/$',
+            sendgrid_notification,
+            name='sendgrid-notification'),
+        url(r'^sms/plivo/$',
+            plivo_notification,
+            name='plivo-notification'),
+        url(r'^sms/twilio/$',
+            twilio_notification,
+            name='twilio-notification'),
+        # url(r'^push/$',
+        #     push_notification,
+        #     name='push-notification'),
 ]

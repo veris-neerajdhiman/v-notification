@@ -15,8 +15,8 @@ EMAIL = 'email'
 SMS = 'sms'
 PUSH = 'push'
 
-EMAIL_NOTIFICATION_PROVIDER = ('gmail', )
-SMS_NOTIFICATION_PROVIDER = ('plivo', )
+EMAIL_NOTIFICATION_PROVIDER = ('gmail', 'sendgrid', )
+SMS_NOTIFICATION_PROVIDER = ('plivo', 'twilio', )
 PUSH_NOTIFICATION_PROVIDER = ('', )
 NOTIFICATION_TYPES = (EMAIL, SMS, PUSH)
 
