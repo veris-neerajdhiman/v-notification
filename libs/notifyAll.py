@@ -49,21 +49,24 @@ class NotifyAllLib(object):
     def _email_message(self, *args, **kwargs):
         """
 
-        :return:
+        :return: message and remaining kwargs (if exists they may be configuration keys)
         """
         context = {
-            'subject': kwargs.get('subject', ''),
-            'body': kwargs.get('body', ''),
-            'html_message': kwargs.get('body', '') if kwargs.get('html_message') is True else None
+            'subject': kwargs.pop('subject', ''),
+            'body': kwargs.pop('body', ''),
+            'html_message': kwargs.pop('body', '') if kwargs.pop('html_message') is True else None
         }
 
-        return {
-            'source': kwargs.get('from_email'),
-            'destination': kwargs.get('to'),
-            'notification_type': notification_settings.EMAIL,
-            'provider': kwargs.get('provider'),
-            'context': context,
-        }
+        return (
+            {
+                'source': kwargs.pop('from_email'),
+                'destination': kwargs.pop('to'),
+                'notification_type': notification_settings.EMAIL,
+                'provider': kwargs.pop('provider'),
+                'context': context,
+            },
+            kwargs
+        )
 
     def _sms_message(self, *args, **kwargs):
         """
@@ -92,12 +95,12 @@ class NotifyAllLib(object):
 
         :return: error if any otherwise send notification to respective destination
         """
-        message = self._prepare_notification_message(*args, **kwargs)
+        message, extra_kwargs = self._prepare_notification_message(*args, **kwargs)
 
         notification = notifier.Notifier(**message)
 
         try:
-            notification.notify()
+            notification.notify(**extra_kwargs)
         except Exception as e:
             raise ValidationError(e)
 
