@@ -30,6 +30,7 @@ class EmailNotificationSerializer(serializers.Serializer):
     """Email Notification Serializer
 
     """
+    host = serializers.CharField(required=True, help_text="Email host")
     to = serializers.EmailField(required=True)
     from_email = serializers.EmailField(required=False)
     subject = serializers.CharField(required=True)
