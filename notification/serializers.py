@@ -72,8 +72,9 @@ class SendGridSerilaizer(EmailNotificationSerializer):
     """Sendgrid Serializer
 
     """
-    sendgrid_api_key = serializers.CharField(required=True, help_text="SendGrid API key.")
-
+    # sendgrid_api_key = serializers.CharField(required=True, help_text="SendGrid API key.")
+    username = serializers.CharField(required=True, help_text="Sendgrid Account Username")
+    password = serializers.CharField(required=True, help_text="Sendgrid Account Password")
 
 class PlivoSerilaizer(SMSNotificationSerializer):
     """Plivo Serializer
