@@ -73,15 +73,18 @@ class NotifyAllLib(object):
 
         :return:
         """
-        return {
-            'source': kwargs.get('from_', 'plivo'),
-            'destination': kwargs.get('to'),
-            'notification_type': notification_settings.SMS,
-            'provider': kwargs.get('provider'),
-            'context': {
-                'body': kwargs.get('body')
+        return (
+            {
+                'source': kwargs.get('from_', 'plivo'),
+                'destination': kwargs.get('to'),
+                'notification_type': notification_settings.SMS,
+                'provider': kwargs.get('provider'),
+                'context': {
+                    'body': kwargs.get('body')
+                }
             },
-        }
+            kwargs
+        )
 
     def _push_message(self, *args, **kwargs):
         """

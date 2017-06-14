@@ -27,11 +27,11 @@ sendgrid_notification = email.SendGridViewSet.as_view({
 })
 
 plivo_notification = sms.PlivoViewSet.as_view({
-    'post': 'send_sms',
+    'post': 'plivo',
 })
 
 twilio_notification = sms.TwilioViewSet.as_view({
-    'post': 'send_sms',
+    'post': 'twilio',
 })
 
 # push_notification = views.NotificationViewSet.as_view({
