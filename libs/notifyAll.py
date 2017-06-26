@@ -75,12 +75,12 @@ class NotifyAllLib(object):
         """
         return (
             {
-                'source': kwargs.get('from_', 'plivo'),
-                'destination': kwargs.get('to'),
+                'source': kwargs.pop('from_', 'plivo'),
+                'destination': kwargs.pop('to'),
                 'notification_type': notification_settings.SMS,
-                'provider': kwargs.get('provider'),
+                'provider': kwargs.pop('provider'),
                 'context': {
-                    'body': kwargs.get('body')
+                    'body': kwargs.pop('body')
                 }
             },
             kwargs
