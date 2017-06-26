@@ -42,7 +42,7 @@ class TwilioViewSet(base.NotificationViewSet):
     """
     serializer_class = serializers.TwilioSerilaizer
 
-    def plivo(self, request):
+    def twilio(self, request):
         """
 
         :param request:

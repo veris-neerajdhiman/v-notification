@@ -25,6 +25,13 @@ EMAIL_FILE_PATH = normpath(join(SITE_ROOT, 'emails'))
 
 
 
+# ######### SECRET CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
+# Note: This key should only be used for development and testing.
+SECRET_KEY = get_env_setting('SECRET_KEY')
+# ######### END SECRET CONFIGURATION
+
+
 ########## DATABASE CONFIGURATION
 DATABASES = {
     'default': {
@@ -55,17 +62,16 @@ CACHES = {
 ########## TOOLBAR CONFIGURATION
 # See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
 INSTALLED_APPS += (
-    'debug_toolbar',
-    'django_extensions'
+    'django_extensions',
 )
 
 # See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
 INTERNAL_IPS = ('127.0.0.1',)
-
-# See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
-MIDDLEWARE += [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-]
+#
+# # See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
+# MIDDLEWARE += [
+#     'debug_toolbar.middleware.DebugToolbarMiddleware',
+# ]
 
 # See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
 DEBUG_TOOLBAR_CONFIG = {
@@ -112,12 +118,6 @@ REST_FRAMEWORK = {
 #` ----------------- Gmail --------------------
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = get_env_setting('EMAIL_HOST_USER')  # my gmail username
-EMAIL_HOST_PASSWORD = get_env_setting('EMAIL_HOST_PASSWORD')  # my gmail password
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-# ----------------------- Plivo -------------------
-PLIVO_AUTH_ID = get_env_setting('PLIVO_AUTH_ID')
-PLIVO_AUTH_TOKEN = get_env_setting('PLIVO_AUTH_TOKEN')

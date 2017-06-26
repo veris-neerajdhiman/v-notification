@@ -30,6 +30,7 @@ class EmailNotificationSerializer(serializers.Serializer):
     """Email Notification Serializer
 
     """
+    host = serializers.CharField(required=True, help_text="Email host")
     to = serializers.EmailField(required=True)
     from_email = serializers.EmailField(required=False)
     subject = serializers.CharField(required=True)
@@ -71,8 +72,9 @@ class SendGridSerilaizer(EmailNotificationSerializer):
     """Sendgrid Serializer
 
     """
-    sendgrid_api_key = serializers.CharField(required=True, help_text="SendGrid API key.")
-
+    # sendgrid_api_key = serializers.CharField(required=True, help_text="SendGrid API key.")
+    username = serializers.CharField(required=True, help_text="Sendgrid Account Username")
+    password = serializers.CharField(required=True, help_text="Sendgrid Account Password")
 
 class PlivoSerilaizer(SMSNotificationSerializer):
     """Plivo Serializer
