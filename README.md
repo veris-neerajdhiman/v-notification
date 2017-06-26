@@ -68,7 +68,7 @@ python manage.py runserver
 
 ## API Reference : 
 
-- API documentation is hosted on [Swagger hub](https://app.swaggerhub.com/apis/verisadmin/v-user/0.1) 
+- API documentation is hosted on [Swagger hub](https://swaggerhub.com/apis/veris-amoghbanta/notification/0.2) 
 and is public.
 
  
