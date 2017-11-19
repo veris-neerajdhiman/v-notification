@@ -34,6 +34,10 @@ twilio_notification = sms.TwilioViewSet.as_view({
     'post': 'twilio',
 })
 
+msg91_notification = sms.Msg91ViewSet.as_view({
+    'post': 'send_sms',
+})
+
 # push_notification = views.NotificationViewSet.as_view({
 #     'post': 'send_push',
 # })
@@ -51,6 +55,9 @@ urlpatterns = [
         url(r'^sms/twilio/$',
             twilio_notification,
             name='twilio-notification'),
+        url(r'^sms/msg91/$',
+            msg91_notification,
+            name='msg91-notification'),
         # url(r'^push/$',
         #     push_notification,
         #     name='push-notification'),

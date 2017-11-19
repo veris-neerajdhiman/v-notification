@@ -49,3 +49,18 @@ class TwilioViewSet(base.NotificationViewSet):
         :return:
         """
         return self.send_sms(request)
+
+
+class Msg91ViewSet(base.NotificationViewSet):
+    """Msg91 ViewSet
+
+    """
+    serializer_class = serializers.Msg91Serilaizer
+
+    def plivo(self, request):
+        """
+
+        :param request:
+        :return:
+        """
+        return self.send_sms(request)

@@ -73,16 +73,17 @@ class NotifyAllLib(object):
 
         :return:
         """
-        return (
-            {
-                'source': kwargs.pop('from_', 'plivo'),
-                'destination': kwargs.pop('to'),
-                'notification_type': notification_settings.SMS,
-                'provider': kwargs.pop('provider'),
-                'context': {
-                    'body': kwargs.pop('body')
-                }
-            },
+        return ({
+            'source': kwargs.get('from_'),
+            'destination': kwargs.get('to'),
+            'notification_type': notification_settings.SMS,
+            'provider': kwargs.get('provider'),
+            'context': {
+                'body': kwargs.get('body'),
+                'country': 91,
+                'transaction_message': True
+            }
+        },
             kwargs
         )
 

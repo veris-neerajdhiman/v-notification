@@ -90,3 +90,10 @@ class TwilioSerilaizer(SMSNotificationSerializer):
     """
     account_sid = serializers.CharField(required=True, help_text="Twilio Account SID.")
     auth_token = serializers.CharField(required=True, help_text="Twilio Auth Token.")
+
+
+class Msg91Serilaizer(SMSNotificationSerializer):
+    """Msg91 Serializer
+
+    """
+    auth_key = serializers.CharField(required=True, help_text="Msg91 Auth key.")
