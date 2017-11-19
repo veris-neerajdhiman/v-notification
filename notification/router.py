@@ -35,7 +35,7 @@ twilio_notification = sms.TwilioViewSet.as_view({
 })
 
 msg91_notification = sms.Msg91ViewSet.as_view({
-    'post': 'send_sms',
+    'post': 'msg91',
 })
 
 # push_notification = views.NotificationViewSet.as_view({

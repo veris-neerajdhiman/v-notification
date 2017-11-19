@@ -74,12 +74,12 @@ class NotifyAllLib(object):
         :return:
         """
         return ({
-            'source': kwargs.get('from_'),
-            'destination': kwargs.get('to'),
+            'source': kwargs.pop('from_'),
+            'destination': kwargs.pop('to'),
             'notification_type': notification_settings.SMS,
-            'provider': kwargs.get('provider'),
+            'provider': kwargs.pop('provider'),
             'context': {
-                'body': kwargs.get('body'),
+                'body': kwargs.pop('body'),
                 'country': 91,
                 'transaction_message': True
             }

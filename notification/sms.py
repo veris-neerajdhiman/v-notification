@@ -57,7 +57,7 @@ class Msg91ViewSet(base.NotificationViewSet):
     """
     serializer_class = serializers.Msg91Serilaizer
 
-    def plivo(self, request):
+    def msg91(self, request):
         """
 
         :param request:
